@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>指令和事件</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div id="app">
+		<p v-if="show">显示这段文本</p>
+	</div>
+	<div id="app-1">
+		<a v-bind:href="url">链接</a>
+		<img v-bind:src="imgUrl">
+	</div>
+	<div id="app-2">
+		<p v-if="show">一段文本</p>
+		<button v-on:click="handleClose">隐藏</button>
+	</div>
+	<div id="app-3">
+		<p v-if="show">一段文本</p>
+		<button v-on:click="show=false">隐藏</button>
+	</div>
+	<div id="app-4">
+		<p v-if="show">一段文本</p>
+		<button v-on:click="handleClose">隐藏</button>
+	</div>
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+			
+		/*显示隐藏文本*/
+		var app = new Vue({
+			el:"#app",
+			data:{
+				show:true
+			},
+			methods:{
+				init:function(text){
+					console.log(text)
+				}
+			},
+			mounted:function(){
+				this.init("初始化时调用");
+			}
+		})
+		app.init("通过外部调用");    //在vue实例外部调用
+		/*v-bind基本用途动态更新html元素上属性*/
+		var app1 = new Vue({
+			el:"#app-1",
+			data:{
+				url:"https://www.github.com",
+				imgUrl:"icon.jpg"
+			}
+		})
+		/*v-on,绑定事件监听器*/	
+		var app2 = new Vue({
+			el:"#app-2",
+			data:{
+				show:true
+			},
+			methods:{
+				handleClose:function(){
+					this.show = false;
+				}
+			}
+		})
+		/*v-on,绑定事件监听器*/
+		var app3 = new Vue({
+			el:"#app-3",
+			data:{
+				show:true
+			}
+		})
+		/*methods里的方法也被代理了，可以像访问vue数据那样调用*/
+		var app4 = new Vue({
+			el:"#app-4",
+			data:{
+				show:true
+			},
+			methods:{
+				handleClose:function(){
+					this.close()
+				},
+				close:function(){
+					this.show = false
+				}
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>插值与表达式</title>
+	<link rel="stylesheet" href="">
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div id="app">{{book}}</div>
+	<div id="app-1">{{date}}</div>
+	<div id="app-2">
+		<span v-html="link"></span>
+		<span v-pre>{{link}}</span>
+	</div>
+	<div id="app-3">
+		{{number/10}}
+		{{isOk?"确定":"取消"}}
+		{{text.split(",").reverse().join(",")}}
+	</div>
+	<script type="text/javascript">
+		/*"{{}}"是最基本的文本插值方法，会自动将我们双向绑定的数据实时显示出来*/
+		var app = new Vue({
+			el:"#app",
+			data:{
+				book:"《vue.js实战》"
+			}
+		})
+		/*实时显示当前时间，美妙更新*/
+		var app1 = new Vue({
+			el:document.getElementById("app-1"),
+			data:{
+				date:new Date()
+			},
+			mounted:function(){         //??????????????
+				var _this = this;           //声明一个变量指向vue实例this，保证作用域一样
+				this.timer = setInterval(function(){
+					_this.date = new Date();  //修改数据date
+				},1000);
+			},
+			beforeDestroy:function(){
+				if(this.timer){
+					clearInterval(this.timer);    //在vue实例销毁前，清除定时器
+				}
+			}
+		})
+		/*v-html可以输出html*/
+		var app2 = new Vue({
+			el:"#app-2",
+			data:{
+				link:"<a href='#'>链接</a>",
+			}
+		})
+		/*{{}}运算*/
+		var app3 = new Vue({
+			el:"#app-3",
+			data:{
+				number:10,
+				isOk:false,
+				text:"123,423,322"
+			}
+		})
+	</script>
+</body>
+</html>

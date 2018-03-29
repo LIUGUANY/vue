@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>vue实战与数据绑定</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div id="app"></div>
+	<script src="http://apps.bdimg.com/libs/vue/1.0.8/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		/*创建vue根实例，启用vue应用*/
+		var app = new Vue({
+
+		})
+		/*el指定一个页面中已存在的DOM元素来挂载Vue实例，可htmlElement，也可以css选择器*/
+		var app = new Vue({
+			el:document.getElementById("app")//或者"#app"
+		})
+		//vue实例本身代理了data对象中所有属性，指向一个已有变量，并且默认建立双向绑定，修改一个时，另一个也会变化
+		var myData = {
+			a:1
+		}
+		var app = new Vue({
+			el:"#app",
+			data:myData
+		})
+		console.log(app.a); //1
+		//修改属性，原数据改变
+		app.a = 3;
+		console.log(myData.a)
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>生命周期</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div id="app"></div>
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		/*
+		created 实例创建完成后调用，此阶段完成了数据的观测等，尚未挂载，$el不可用。需要初始化处理一些数据时会比较有用
+		mounted el挂载到实例上后调用，一般我们第一个业务逻辑会在这里开始
+		beforDestroy 实例销毁之前调用。主要解绑一些使用addEventListener监听事件等
+		*/
+		var app = new Vue({
+			el:"#app",
+			data:{
+				a:2
+			},
+			created:function(){
+				console.log(this.a);  //2
+			},
+			mounted:function(){
+				console.log(this.$el)
+			}
+		})
+	</script>
+</body>
+</html>

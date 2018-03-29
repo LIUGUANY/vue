@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>绑定class的几种方式</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<!-- 为v-bind:class设置一个对象，动态切换class -->
+	<div id="app">
+		<div :class="{'active':isActive}"></div>
+	</div>
+	<!--传入多个属性，动态切换class -->
+	<div id="app1">
+		<div class="static" :class="{'active':isActive,'error':isError}"></div>
+	</div>
+	<!-- class表达式过长，绑定计算属性 -->
+	<div id="app2">
+		<div :class="classes"></div>
+	</div>
+	<!-- 导入vue.js -->
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	<!-- js -->
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				isActive:true
+			}
+		})
+		var app1 = new Vue({
+			el:"#app1",
+			data:{
+				isActive:true,
+				isError:true
+			}
+		})
+		var app2 = new Vue({
+			el:"#app2",
+			data:{
+				isActive:true,
+				error:null
+			},
+			computed:{
+				classes:function(){
+					return {
+						active:this.isActive && !this.error,
+						'text-fail':this.error && this.error.type === 'fail'
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

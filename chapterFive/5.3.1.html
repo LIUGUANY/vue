@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>v-for基本用法</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		li{
+			list-style: none
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="book in books">{{book.name}}</li>
+		</ul>
+	</div>
+	<!-- v-for表达式支持一个可选参数作为当前项的索引 -->
+	<div id="app1">
+		<ul>
+			<li v-for="(book,index) in books">{{index}}-{{book.name}}</li>
+		</ul>
+	</div>
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				books:[
+					{name:"《vue.js实战》"},
+					{name:"《react实战》"},
+					{name:"《html5实战》"}
+				]
+			}
+		})
+		var app1 = new Vue({
+			el:"#app1",
+			data:{
+				books:[
+					{name:"《html5实战》"},
+					{name:"《react实战》"},
+					{name:"《vue.js实战》"}
+				]
+			}
+		})
+	</script>
+</body>
+</html>

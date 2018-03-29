@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>v-if,v-else-if,v-else</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<!-- v-if,v-else-if,v-else -->
+	<div id="app">
+		<p v-if="status===1">当status为1时显示改行</p>
+		<p v-else-if="status===2">当status为2时显示该行</p>
+		<p v-else>否则显示该行</p>
+	</div>
+
+	<div id="app1">
+		<template v-if="status===1">
+			<p>问问我</p>
+			<p>问问我</p>
+			<p>问问我</p>
+		</template>
+	</div>
+
+	<div id="app2">
+		<template v-if="type==='name'">
+			<label>用户名:</label>
+			<input type="" name="" placeholder="输入用户名">
+		</template>
+		<template v-else>
+			<label>邮箱:</label>
+			<input type="" name="" placeholder="输入邮箱">
+		</template>
+		<button @click = "handleToggleClick">切换输入类型</button>
+	</div>
+
+	<div id="app3">
+		<template v-if="type==='name'">
+			<label>用户名:</label>
+			<input type="" name="" placeholder="输入用户名" key="name-input">
+		</template>
+		<template v-else>
+			<label>邮箱:</label>
+			<input type="" placeholder="输入邮箱" key="mail-input">
+		</template>
+		<button @click="handleToggleClick">切换输入类型</button>
+	</div>
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				status:3
+			}
+		})
+		var app1 = new Vue({
+			el:"#app1",
+			data:{
+				status:1
+			}
+		})
+		var app2 = new Vue({
+			el:"#app2",
+			data:{
+				type:"name"
+			},
+			methods:{
+				handleToggleClick:function(){
+					this.type = this.type === "name"?"mail":"name"
+				}
+			}
+		})
+		var app3 = new Vue({
+			el:"#app3",
+			data:{
+				type:"name"
+			},
+			methods:{
+				handleToggleClick:function(){
+					this.type = this.type==="name"?"mail":"name"
+				}
+			}
+		})
+	</script>
+</body>
+</html>

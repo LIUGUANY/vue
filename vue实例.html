@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>vue实例</title>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/vue/1.0.8/vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{foo}}</p>
+		<button @click = "foo='baz'">Change it</button>
+	</div>
+	<script type="text/javascript">
+		/*//数据对象
+		var data = {a:1}
+		//对象被加入vue实例中
+		var vm = new Vue({
+			data:data
+		})
+		//获得属性
+		vm.a == data.a
+		//设置属性会影响到其他值
+		vm.a = 3;
+		console.log(data.a)
+		//反之亦然
+		data.a = 4;
+		console.log(vm.a)*/
+
+		var data  = {a:1}
+		var vm = new Vue({
+			el:"#example"，
+			data:data
+		})
+		vm.$data === data;
+		vm.$el === document.getElementById("exampld");
+		vm.$watch("a",function(newValue,old){
+			console.log(1)
+		})
+	</script>
+
+</body>
+</html>

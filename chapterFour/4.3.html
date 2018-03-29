@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>绑定内联样式</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<!-- 绑定内联样式 -->
+	<div id="app">
+		<div :style="{'color':color,'fontSize':fontSize+'px'}">文本
+		</div>
+	</div>
+	<!-- 改写 -->
+	<div id="app1">
+		<div :style="styles">文本</div>
+	</div>
+	<!-- 导入vuejs -->
+	<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+	<!-- js -->
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				color:'red',
+				fontSize:12
+			}
+		})
+		var app1 = new Vue({
+			el:"#app1",
+			data:{
+				styles:{
+					color:'red',
+					fontSize:14+"px"
+				}
+			}
+		})
+	</script>
+</body>
+</html>
